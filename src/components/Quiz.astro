@@ -1,0 +1,52 @@
+<section id="quiz" class="quiz-screen">
+  <header class="quiz-header">
+    <div class="quiz-meta">
+      <span id="progress">Question 1 / 10</span>
+      <span class="quiz-score">Score: <strong id="score">0</strong></span>
+    </div>
+    <div id="timer" class="timer">
+      <span id="timerValue">15</span>s
+      <button id="pauseBtn" class="pause-btn" type="button" aria-label="Pause timer">Pause</button>
+    </div>
+  </header>
+
+  <h2 id="questionText" class="question-text">Loading…</h2>
+
+  <form id="answerForm" class="answers" autocomplete="off">
+    <button type="button" class="answer" data-index="0"></button>
+    <button type="button" class="answer" data-index="1"></button>
+    <button type="button" class="answer" data-index="2"></button>
+    <button type="button" class="answer" data-index="3"></button>
+  </form>
+
+  <div id="feedback" class="feedback" aria-live="polite"></div>
+
+  <button id="nextBtn" class="btn btn-primary next-btn" type="button" style="display:none;">Next</button>
+</section>
+
+<style>
+  .quiz-screen { display: flex; flex-direction: column; gap: 1.25rem; }
+  .quiz-header { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--fg-muted); }
+  .quiz-meta { display: flex; gap: 1rem; }
+  .quiz-score strong { color: var(--fg); }
+  .timer { display: flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-weight: 600; color: var(--fg); }
+  .timer.warning { color: var(--danger); animation: pulse 1s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+  .pause-btn { background: transparent; border: 1px solid var(--border); color: var(--fg-muted); font: inherit; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 6px; cursor: pointer; }
+  .pause-btn:hover { color: var(--fg); border-color: var(--border-strong); }
+  .question-text { font-size: 1.15rem; font-weight: 600; margin: 0; line-height: 1.4; letter-spacing: -0.01em; }
+  .answers { display: grid; gap: 0.5rem; }
+  .answer { text-align: left; padding: 0.85rem 1rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); color: var(--fg); font: inherit; font-size: 0.92rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+  .answer:hover:not(:disabled) { border-color: var(--border-strong); background: var(--surface); }
+  .answer:disabled { cursor: not-allowed; }
+  .answer.correct { border-color: var(--accent); background: rgba(16,163,127,0.1); color: var(--accent); }
+  .answer.wrong { border-color: var(--danger); background: rgba(220,38,38,0.1); color: var(--danger); }
+  .answer.dim { opacity: 0.45; }
+  .feedback { min-height: 1.25rem; font-size: 0.88rem; color: var(--fg-muted); text-align: center; }
+  .feedback.correct { color: var(--accent); }
+  .feedback.wrong { color: var(--danger); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1rem; border-radius: var(--radius-pill); border: 1px solid transparent; font: inherit; font-weight: 500; font-size: 0.9rem; cursor: pointer; }
+  .btn-primary { background: var(--fg); color: var(--bg); width: 100%; }
+  .btn-primary:hover { opacity: 0.9; }
+  .next-btn { margin-top: 0.25rem; }
+</style>
